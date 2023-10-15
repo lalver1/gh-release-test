@@ -26,6 +26,4 @@ jobs:
       - name: Publish the release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            dist/gh_release_test-0.1.0-py3-none-any.whl
-            gh_release_test-0.1.0.tar.gz
+          files: dist/*.*
