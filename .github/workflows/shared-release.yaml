@@ -1,20 +1,10 @@
-name: release
+name: shared-release
 
 on:
-  push:
-    tags:
-      - "[0-9]+.[0-9]+.[0-9]+"
-
-permissions:
-  contents: write
-  packages: write
+  workflow_call:
 
 jobs:
-  ci:
-    uses: lalver1/gh-release-test/.github/workflows/shared-release.yaml@main
-
   build:
-    needs: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,9 +15,13 @@ jobs:
           cache: "poetry"
       - name: Setup the project
         run: poetry install
-      - name: Build sdist and wheel
-        run: poetry build
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Publish the release
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/*.*
+          body: "Major Release"
