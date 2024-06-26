@@ -4,15 +4,6 @@ title: Make a Release
 labels:
   - release
 body:
-  - type: input
-    id: blog-title
-    attributes:
-      label: | 
-      Blog Title 1
-      Blog Title 2
-      description: Set the title of the blog post
-    validations:
-      required: false
   - type: markdown
     attributes:
       value: |
