@@ -6,6 +6,9 @@ on:
       - "[0-9]+.[0-9]+.[0-9]+"
       - "[0-9]+.[0-9]+.[0-9]+-rc[0-9]+"
 
+env:
+  MY_ENV: ${{ github.ref_type != 'tag' && github.ref_name || contains(github.ref, 'rc') && 'test' || 'prod' }}
+
 permissions:
   contents: write
   packages: write
@@ -16,7 +19,6 @@ jobs:
 
   build:
     needs: ci
-    if: ${{ (github.ref_type != 'tag' && github.ref_name || contains(github.ref, 'rc') && 'test' || 'prod') == 'prod'}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +32,7 @@ jobs:
       - name: Build sdist and wheel
         run: poetry build
       - name: Publish the release
+        if: ${{ env.MY_ENV == 'prod' }}
         uses: softprops/action-gh-release@v1
         with:
           files: dist/*.*
