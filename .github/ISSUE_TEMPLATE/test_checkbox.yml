@@ -1,0 +1,38 @@
+name: Batch Email Request Form
+description: Request the CS team to send out an batch email
+title: "[Batch Email]: "
+labels:
+  - "email"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### This issue template can be used to request that the CS team send out an ad hoc email blast when Cal-ITP has noteworthy news to share.
+  - type: input
+    id: email-copy
+    attributes:
+      label: Provide a link to the email copy
+      description: The link should be a google doc
+      placeholder: ex https://docs.google.com/
+    validations:
+      required: true
+  - type: dropdown
+    id: content
+    attributes:
+      label: Is the email copy finalized?
+      description: If no, the CS team will wait to take action on this issue until told that the copy is final
+      options:
+        - "Yes"
+        - "No"
+  - type: checkboxes
+    id: information
+    attributes:
+      label: Confirm that the linked document above provides the following pieces of information
+      description: Select all that apply.
+      options:
+        - label: Clear subject line
+        - label: Pre-header (Optional, this is the line that shows up below the Subject Line in your mobile inbox. If your email has no pre-header, check this box anyway)
+        - label: A concise body
+        - label: A signature at the end of the body (eg, From, The Cal-ITP Team)
+    validations:
+      required: true
