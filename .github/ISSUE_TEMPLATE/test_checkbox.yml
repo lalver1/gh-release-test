@@ -30,8 +30,7 @@ body:
       label: Confirm that the linked document above provides the following pieces of information
       description: Select all that apply.
       options:
-        - label: Clear subject line
-                 Line 2
+        - label: Clear subject line (`git tag -a 20xx.xx.x-rc`, `git push origin 20xx.xx.x-rc`)
           required: true
         - label: Pre-header (Optional, this is the line that shows up below the Subject Line in your mobile inbox. If your email has no pre-header, check this box anyway)
         - label: A concise body
